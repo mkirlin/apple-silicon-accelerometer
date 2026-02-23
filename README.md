@@ -35,10 +35,10 @@ you can verify the device exists on your machine with:
 
     git clone https://github.com/olvvier/apple-silicon-accelerometer
     cd apple-silicon-accelerometer
-    pip install -e .
-    sudo python3 motion_live.py
+    sudo $(which uv) run motion_live.py
 
-requires root because iokit hid device access on apple silicon needs elevated privileges
+requires root because iokit hid device access on apple silicon needs elevated privileges.
+`uv` handles dependencies automatically via inline script metadata — no separate install step needed.
 
 ### keyboard flash mode (bundled KBPulse)
 
@@ -47,16 +47,16 @@ the repo now vendors KBPulse, including a prebuilt apple silicon binary at `KBPu
 
 run as usual:
 
-    sudo python3 motion_live.py
+    sudo $(which uv) run motion_live.py
 
 optional overrides:
 
-    sudo python3 motion_live.py --no-kbpulse
-    sudo python3 motion_live.py --kbpulse-bin /path/to/KBPulse
+    sudo $(which uv) run motion_live.py --no-kbpulse
+    sudo $(which uv) run motion_live.py --kbpulse-bin /path/to/KBPulse
 
-### with uv
+### install as a tool with uvx
 
-If you have `uv`/`uvx` installed, you can also just
+If you prefer a global install via `uvx`:
 
     sudo uvx git+https://github.com/olvvier/apple-silicon-accelerometer.git
 
