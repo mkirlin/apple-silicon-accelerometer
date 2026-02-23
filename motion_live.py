@@ -1,8 +1,14 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#   "PyWavelets>=1.4",
+# ]
+# ///
 """
 demo app for spu_sensor.py - vibration detection, orientation gauges,
 experimental heartbeat (bcg), lid angle & ambient light in a terminal dashboard
-requires: sudo python3 motion_live.py
+requires: sudo $(which uv) run motion_live.py
 """
 
 import time
@@ -1000,12 +1006,12 @@ def main():
         elif arg == '--kbpulse-as-root':
             kbpulse_as_root = True
         elif arg in ('-h', '--help'):
-            print(f'usage: sudo python3 {sys.argv[0]} [--no-kbpulse] [--kbpulse-bin /path/to/KBPulse] [--kbpulse-as-root]')
+            print(f'usage: sudo $(which uv) run {sys.argv[0]} [--no-kbpulse] [--kbpulse-bin /path/to/KBPulse] [--kbpulse-as-root]')
             return
         i += 1
 
     if os.geteuid() != 0:
-        print(f"\033[91m\033[1m[!] run with: sudo python3 {sys.argv[0]}\033[0m")
+        print(f"\033[91m\033[1m[!] run with: sudo $(which uv) run {sys.argv[0]}\033[0m")
         sys.exit(1)
 
     all_shms = [
